@@ -1,0 +1,30 @@
+{
+  "comment": [
+    "WHY THIS FILE EXISTS:",
+    "nodemon by default watches ALL files in the server directory, including",
+    "server/data/users.json and server/data/refreshTokens.json. These files",
+    "are written at runtime by fileStorage.js on every login / register /",
+    "logout call. Without ignoring them, nodemon detects each write and",
+    "restarts the process — causing the startup logs to repeat in a loop.",
+    "",
+    "The 'ignore' list below prevents those runtime-written files from",
+    "triggering restarts. Only actual source-code changes (*.js, *.mjs,",
+    "*.json config files at the root) will cause a restart."
+  ],
+  "watch": ["*.js", "*.mjs", "routes/", "controllers/", "middleware/", "models/", "services/", "utils/"],
+  "ext": "js,mjs,cjs",
+  "ignore": [
+    "data/**",
+    "logs/**",
+    "uploads/**",
+    "dist/**",
+    "build/**",
+    "node_modules/**",
+    "*.test.js",
+    "*.spec.js"
+  ],
+  "delay": 300,
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

@@ -1,0 +1,1251 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bd1fe569-0009-4ed3-bb14-6e05a6e89d97",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        240,
+        416
+      ],
+      "id": "eafac3d7-c3a1-4e3a-b9f6-c0710682f70a",
+      "name": "Webhook",
+      "webhookId": "bd1fe569-0009-4ed3-bb14-6e05a6e89d97"
+    },
+    {
+      "parameters": {
+        "promptType": "=define",
+        "text": "=This is the profile of the user:\n\n{{ $json.body.profile.personalInfo.fullName }}\n{{ $json.body.profile.personalInfo.phone }}{{ $json.body.profile.personalInfo.address }}{{ $json.body.profile.personalInfo.city }}{{ $json.body.profile.personalInfo.linkedin }}{{ $json.body.profile.personalInfo.github }}\n{{ $json.body.profile.personalInfo.summary }}\n\n\n\n{{ $json.body.profile.skills.technical[0].name }}{{ $json.body.profile.skills.technical[0].category }}{{ $json.body.profile.skills.technical[0].proficiency }}{{ $json.body.profile.skills.technical[1].name }}{{ $json.body.profile.skills.technical[1].category }}{{ $json.body.profile.skills.technical[1].proficiency }}{{ $json.body.profile.education[0].institution }}{{ $json.body.profile.education[0].degree }}{{ $json.body.profile.education[0].startDate }}{{ $json.body.profile.education[0].endDate }}{{ $json.body.profile.education[1].institution }}{{ $json.body.profile.education[1].degree }}{{ $json.body.profile.education[1].field }}{{ $json.body.profile.education[1].startDate }}{{ $json.body.profile.education[1].endDate }}{{ $json.body.profile.workExperience[0].company }}{{ $json.body.profile.workExperience[0].position }}{{ $json.body.profile.workExperience[0].location }}\nAnd this is the job description:\n\n{{ $json.body.jobDescription }}\n\nYour task is to create a personalized CV that matches the job description as closely as possible.\n\nReturn only a complete LaTeX CV using the template below. Do not add any comments. Do not escape characters. Output the result inside a markdown code block:\n\n```latex\n%-------------------------\n\\documentclass[letterpaper,11pt]{article}\n\\usepackage{latexsym}\n\\usepackage[empty]{fullpage}\n\\usepackage{titlesec}\n\\usepackage{marvosym}\n\\usepackage[usenames,dvipsnames]{color}\n\\usepackage{verbatim}\n\\usepackage{enumitem}\n\\usepackage[hidelinks]{hyperref}\n\\usepackage{fancyhdr}\n\\usepackage[english]{babel}\n\\usepackage{tabularx}\n\\input{glyphtounicode}\n\n\\pagestyle{fancy}\n\\fancyhf{}\n\\fancyfoot{}\n\\renewcommand{\\headrulewidth}{0pt}\n\\renewcommand{\\footrulewidth}{0pt}\n\n\\addtolength{\\oddsidemargin}{-0.5in}\n\\addtolength{\\evensidemargin}{-0.5in}\n\\addtolength{\\textwidth}{1in}\n\\addtolength{\\topmargin}{-.5in}\n\\addtolength{\\textheight}{1.0in}\n\n\\urlstyle{same}\n\\raggedbottom\n\\raggedright\n\\setlength{\\tabcolsep}{0in}\n\n\\titleformat{\\section}{\\vspace{-4pt}\\scshape\\raggedright\\large}{}{0em}{}[\\color{black}\\titlerule \\vspace{-5pt}]\n\\pdfgentounicode=1\n\n\\newcommand{\\resumeItem}[1]{\\item\\small}\n\\newcommand{\\resumeSubheading}[4]{\\vspace{-2pt}\\item\\begin{tabular*}{0.97\\textwidth}[t]{l@{\\extracolsep{\\fill}}r}\\textbf{#1} & #2 \\\\ \\textit{\\small#3} & \\textit{\\small #4} \\\\ \\end{tabular*}\\vspace{-7pt}}\n\\newcommand{\\resumeSubSubheading}[2]{\\item\\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}\\textit{\\small#1} & \\textit{\\small #2} \\\\ \\end{tabular*}\\vspace{-7pt}}\n\\newcommand{\\resumeProjectHeading}[2]{\\item\\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}\\small#1 & #2 \\\\ \\end{tabular*}\\vspace{-7pt}}\n\\newcommand{\\resumeSubItem}[1]{\\resumeItem{#1}\\vspace{-4pt}}\n\\renewcommand\\labelitemii{$\\vcenter{\\hbox{\\tiny$\\bullet$}}$}\n\\newcommand{\\resumeSubHeadingListStart}{\\begin{itemize}[leftmargin=0.15in, label={}]} \n\\newcommand{\\resumeSubHeadingListEnd}{\\end{itemize}} \n\\newcommand{\\resumeItemListStart}{\\begin{itemize}} \n\\newcommand{\\resumeItemListEnd}{\\end{itemize}\\vspace{-5pt}}\n\n\\begin{document}\n\n% Fill the CV based on the user's profile and the job description\n\n\\end{document}\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        560,
+        -208
+      ],
+      "id": "658dbed6-4b45-4e16-9813-29eaad3a12ba",
+      "name": "AI Agent",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        576,
+        16
+      ],
+      "id": "a5f8387a-2960-472d-8c8d-601b71d487d0",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZUHlH2KWTpC5qasc",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "azerty"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        704,
+        16
+      ],
+      "id": "83616f4a-80a0-4fbb-83b0-9bda3e1222c1",
+      "name": "Simple Memory",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        912,
+        -208
+      ],
+      "id": "b38b49e7-d3ca-42cf-8be7-edd5ccb4729a",
+      "name": "Respond to Webhook",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bd1fe569-0009-4ed3-bb14-6e05a6e89d97222",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -176,
+        864
+      ],
+      "id": "1b32a759-b57a-4b92-97f2-ce2a4dd6521c",
+      "name": "Webhook1",
+      "webhookId": "bd1fe569-0009-4ed3-bb14-6e05a6e89d97"
+    },
+    {
+      "parameters": {
+        "promptType": "=define",
+        "text": "=This is the profile of the user:\n{{ $json.merged }}\nAnd this is the job description:\n{{ $('Webhook1').item.json.body.jobDescription }}\n\nTu es un assistant d’évaluation de profil. Tu reçois deux entrées : \n1) la description du métier (JOB_DESCRIPTION) \n2) le profil candidat (CANDIDATE_PROFILE).\n\nAnalyse les deux et retourne UNIQUEMENT un objet JSON avec le format ci-dessous.\n\nRègles :\n- Extrais les compétences, missions et attentes clés du métier.\n- Compare-les avec le profil du candidat.\n- Donne une note pour chaque point de 0 à 100.\n- Classe les éléments dans : \"strong_points\", \"medium_points\", \"weak_points\".\n- Calcule une \"overall_score\" globale (0-100).\n- Ajoute un \"advice\" court (1 ou 2 phrases maximum).\n\nRetourne STRICTEMENT ce JSON :\n\n{\n  \"strong_points\": [\n    { \"label\": \"string\", \"note\": 0, \"proof\": \"string\" }\n  ],\n  \"medium_points\": [\n    { \"label\": \"string\", \"note\": 0, \"proof\": \"string\" }\n  ],\n  \"weak_points\": [\n    { \"label\": \"string\", \"note\": 0, \"proof\": \"string\" }\n  ],\n  \"overall_score\": 0,\n  \"advice\": \"string\"\n}\n\nNote :\n- \"proof\" = justification courte (projet, stage, compétence mentionnée).\n- Pas de texte en dehors du JSON.",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        464,
+        848
+      ],
+      "id": "ac2e011b-4b53-4bb8-b1b7-276cdcb620bc",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        384,
+        1088
+      ],
+      "id": "386ed1fa-2edc-4ea0-9d67-3d96f5fc9500",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "B47ylUx0DJewVJcC",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "azertyiuytre"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        592,
+        1136
+      ],
+      "id": "317b2ec2-1296-4ebe-9b23-93054235794c",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        816,
+        848
+      ],
+      "id": "586887d4-29eb-4c19-b199-000b53963541",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allItems = $input.all();\nconst data = allItems[0].json.data;\n\n// Convert to JSON string (minified)\nlet str = JSON.stringify(data);\n\n// Remove ALL spaces, tabs, newlines, backslashes, etc.\nstr = str\n  .replace(/\\s+/g, ' ')      // remove spaces / tabs / newlines\n  .replace(/\\\\+/g, '')      // remove backslashes\n  .replace(/\\n+/g, '')      // remove line breaks\n  .replace(/\\r+/g, '');     // remove carriage returns\n\nreturn [\n  {\n    json: {\n      merged: str\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        688,
+        416
+      ],
+      "id": "51e420a5-ce66-4cff-be49-1c974a59449b",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "include": "allFieldsExcept",
+        "fieldsToExclude": "headers, params, body.jobDescription, webhookUrl, executionMode, body.jobDescription",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        464,
+        416
+      ],
+      "id": "0bf8f363-6e09-41ae-9f8d-dd1b5eb48c52",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bd1fe569-0009-4ed3-bb14-6e05a6e89d97",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        336,
+        -208
+      ],
+      "id": "8311f952-107e-4d0e-8555-6e17010f98d2",
+      "name": "Webhook2",
+      "webhookId": "bd1fe569-0009-4ed3-bb14-6e05a6e89d97",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "=define",
+        "text": "=This is the profile of the user:\n{{ $json.merged }}\n\nAnd this is the job description:\n{{ $('Webhook').item.json.body.jobDescription }}\n\n\nYour task is to create a personalized CV in english that matches the job description as closely as possible.\n\nReturn only a complete LaTeX CV using the template below. Do not add any comments. Do not escape characters. Output the result inside a markdown code block:\n\n```latex\n%-------------------------\n\\documentclass[letterpaper,11pt]{article}\n\n\\usepackage{latexsym}\n\\usepackage[empty]{fullpage}\n\\usepackage{titlesec}\n\\usepackage{marvosym}\n\\usepackage[usenames,dvipsnames]{color}\n\\usepackage{verbatim}\n\\usepackage{enumitem}\n\\usepackage[hidelinks]{hyperref}\n\\usepackage{fancyhdr}\n\\usepackage[english]{babel}\n\\usepackage{tabularx}\n\\input{glyphtounicode}\n\n\n%----------FONT OPTIONS----------\n% sans-serif\n% \\usepackage[sfdefault]{FiraSans}\n% \\usepackage[sfdefault]{roboto}\n% \\usepackage[sfdefault]{noto-sans}\n% \\usepackage[default]{sourcesanspro}\n\n% serif\n% \\usepackage{CormorantGaramond}\n% \\usepackage{charter}\n\n\n\\pagestyle{fancy}\n\\fancyhf{} % clear all header and footer fields\n\\fancyfoot{}\n\\renewcommand{\\headrulewidth}{0pt}\n\\renewcommand{\\footrulewidth}{0pt}\n\n% Adjust margins\n\\addtolength{\\oddsidemargin}{-0.5in}\n\\addtolength{\\evensidemargin}{-0.5in}\n\\addtolength{\\textwidth}{1in}\n\\addtolength{\\topmargin}{-.5in}\n\\addtolength{\\textheight}{1.0in}\n\n\\urlstyle{same}\n\n\\raggedbottom\n\\raggedright\n\\setlength{\\tabcolsep}{0in}\n\n% Sections formatting\n\\titleformat{\\section}{\n  \\vspace{-4pt}\\scshape\\raggedright\\large\n}{}{0em}{}[\\color{black}\\titlerule \\vspace{-5pt}]\n\n% Ensure that generate pdf is machine readable/ATS parsable\n\\pdfgentounicode=1\n\n%-------------------------\n% Custom commands\n\\newcommand{\\resumeItem}[1]{\n  \\item\\small{\n    {#1 \\vspace{-2pt}}\n  }\n}\n\n\\newcommand{\\resumeSubheading}[4]{\n  \\vspace{-2pt}\\item\n    \\begin{tabular*}{0.97\\textwidth}[t]{l@{\\extracolsep{\\fill}}r}\n      \\textbf{#1} & #2 \\\\\n      \\textit{\\small#3} & \\textit{\\small #4} \\\\\n    \\end{tabular*}\\vspace{-7pt}\n}\n\n\\newcommand{\\resumeSubSubheading}[2]{\n    \\item\n    \\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}\n      \\textit{\\small#1} & \\textit{\\small #2} \\\\\n    \\end{tabular*}\\vspace{-7pt}\n}\n\n\\newcommand{\\resumeProjectHeading}[2]{\n    \\item\n    \\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}\n      \\small#1 & #2 \\\\\n    \\end{tabular*}\\vspace{-7pt}\n}\n\n\\newcommand{\\resumeSubItem}[1]{\\resumeItem{#1}\\vspace{-4pt}}\n\n\\renewcommand\\labelitemii{$\\vcenter{\\hbox{\\tiny$\\bullet$}}$}\n\n\\newcommand{\\resumeSubHeadingListStart}{\\begin{itemize}[leftmargin=0.15in, label={}]}\n\\newcommand{\\resumeSubHeadingListEnd}{\\end{itemize}}\n\\newcommand{\\resumeItemListStart}{\\begin{itemize}}\n\\newcommand{\\resumeItemListEnd}{\\end{itemize}\\vspace{-5pt}}\n\n%-------------------------------------------\n%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\n\\begin{document}\n\n%----------HEADING----------\n% \\begin{tabular*}{\\textwidth}{l@{\\extracolsep{\\fill}}r}\n%   \\textbf{\\href{http://sourabhbajaj.com/}{\\Large Sourabh Bajaj}} & Email : \\href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\\\\n%   \\href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\\\\n% \\end{tabular*}\n\n\\begin{center}\n    \\textbf{\\Huge \\scshape Jake Ryan} \\\\ \\vspace{1pt}\n    \\small 123-456-7890 $|$ \\href{mailto:x@x.com}{\\underline{jake@su.edu}} $|$ \n    \\href{https://linkedin.com/in/...}{\\underline{linkedin.com/in/jake}} $|$\n    \\href{https://github.com/...}{\\underline{github.com/jake}}\n\\end{center}\n\n\n%-----------EDUCATION-----------\n\\section{Education}\n  \\resumeSubHeadingListStart\n    \\resumeSubheading\n      {Southwestern University}{Georgetown, TX}\n      {Bachelor of Arts in Computer Science, Minor in Business}{Aug. 2018 -- May 2021}\n    \\resumeSubheading\n      {Blinn College}{Bryan, TX}\n      {Associate's in Liberal Arts}{Aug. 2014 -- May 2018}\n  \\resumeSubHeadingListEnd\n\n\n%-----------EXPERIENCE-----------\n\\section{Experience}\n  \\resumeSubHeadingListStart\n\n    \\resumeSubheading\n      {Undergraduate Research Assistant}{June 2020 -- Present}\n      {Texas A\\&M University}{College Station, TX}\n      \\resumeItemListStart\n        \\resumeItem{Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems}\n        \\resumeItem{Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data}\n        \\resumeItem{Explored ways to visualize GitHub collaboration in a classroom setting}\n      \\resumeItemListEnd\n      \n% -----------Multiple Positions Heading-----------\n%    \\resumeSubSubheading\n%     {Software Engineer I}{Oct 2014 - Sep 2016}\n%     \\resumeItemListStart\n%        \\resumeItem{Apache Beam}\n%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}\n%     \\resumeItemListEnd\n%    \\resumeSubHeadingListEnd\n%-------------------------------------------\n\n    \\resumeSubheading\n      {Information Technology Support Specialist}{Sep. 2018 -- Present}\n      {Southwestern University}{Georgetown, TX}\n      \\resumeItemListStart\n        \\resumeItem{Communicate with managers to set up campus computers used on campus}\n        \\resumeItem{Assess and troubleshoot computer problems brought by students, faculty and staff}\n        \\resumeItem{Maintain upkeep of computers, classroom equipment, and 200 printers across campus}\n    \\resumeItemListEnd\n\n    \\resumeSubheading\n      {Artificial Intelligence Research Assistant}{May 2019 -- July 2019}\n      {Southwestern University}{Georgetown, TX}\n      \\resumeItemListStart\n        \\resumeItem{Explored methods to generate video game dungeons based off of \\emph{The Legend of Zelda}}\n        \\resumeItem{Developed a game in Java to test the generated dungeons}\n        \\resumeItem{Contributed 50K+ lines of code to an established codebase via Git}\n        \\resumeItem{Conducted  a human subject study to determine which video game dungeon generation technique is enjoyable}\n        \\resumeItem{Wrote an 8-page paper and gave multiple presentations on-campus}\n        \\resumeItem{Presented virtually to the World Conference on Computational Intelligence}\n      \\resumeItemListEnd\n\n  \\resumeSubHeadingListEnd\n\n\n%-----------PROJECTS-----------\n\\section{Projects}\n    \\resumeSubHeadingListStart\n      \\resumeProjectHeading\n          {\\textbf{Gitlytics} $|$ \\emph{Python, Flask, React, PostgreSQL, Docker}}{June 2020 -- Present}\n          \\resumeItemListStart\n            \\resumeItem{Developed a full-stack web application using with Flask serving a REST API with React as the frontend}\n            \\resumeItem{Implemented GitHub OAuth to get data from user’s repositories}\n            \\resumeItem{Visualized GitHub data to show collaboration}\n            \\resumeItem{Used Celery and Redis for asynchronous tasks}\n          \\resumeItemListEnd\n      \\resumeProjectHeading\n          {\\textbf{Simple Paintball} $|$ \\emph{Spigot API, Java, Maven, TravisCI, Git}}{May 2018 -- May 2020}\n          \\resumeItemListStart\n            \\resumeItem{Developed a Minecraft server plugin to entertain kids during free time for a previous job}\n            \\resumeItem{Published plugin to websites gaining 2K+ downloads and an average 4.5/5-star review}\n            \\resumeItem{Implemented continuous delivery using TravisCI to build the plugin upon new a release}\n            \\resumeItem{Collaborated with Minecraft server administrators to suggest features and get feedback about the plugin}\n          \\resumeItemListEnd\n    \\resumeSubHeadingListEnd\n\n\n\n%\n%-----------PROGRAMMING SKILLS-----------\n\\section{Technical Skills}\n \\begin{itemize}[leftmargin=0.15in, label={}]\n    \\small{\\item{\n     \\textbf{Languages}{: Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, R} \\\\\n     \\textbf{Frameworks}{: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI} \\\\\n     \\textbf{Developer Tools}{: Git, Docker, TravisCI, Google Cloud Platform, VS Code, Visual Studio, PyCharm, IntelliJ, Eclipse} \\\\\n     \\textbf{Libraries}{: pandas, NumPy, Matplotlib}\n    }}\n \\end{itemize}\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        912,
+        416
+      ],
+      "id": "72153861-4d85-4261-a3a2-10a5ba882dab",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        928,
+        640
+      ],
+      "id": "bddd2856-413f-46c9-a65d-06682c6aca16",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "B47ylUx0DJewVJcC",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "azerty"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1056,
+        640
+      ],
+      "id": "75ef8598-bfbd-4535-bf1b-801110ccf8c0",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1264,
+        416
+      ],
+      "id": "e2930e65-e427-4be7-b35e-1d3fe0e2f4e3",
+      "name": "Respond to Webhook2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allItems = $input.all();\nconst data = allItems[0].json.data;\n\n// Convert to JSON string (minified)\nlet str = JSON.stringify(data);\n\n// Remove ALL spaces, tabs, newlines, backslashes, etc.\nstr = str\n  .replace(/\\s+/g, ' ')      // remove spaces / tabs / newlines\n  .replace(/\\\\+/g, '')      // remove backslashes\n  .replace(/\\n+/g, '')      // remove line breaks\n  .replace(/\\r+/g, '');     // remove carriage returns\n\nreturn [\n  {\n    json: {\n      merged: str\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        256,
+        864
+      ],
+      "id": "c36ecf23-5f91-4ef5-a66b-7548505d38ba",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "include": "allFieldsExcept",
+        "fieldsToExclude": "headers, params, body.jobDescription, webhookUrl, executionMode, body.jobDescription",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        32,
+        864
+      ],
+      "id": "d1e5dc2c-7f70-4efd-9c5c-ce6c32db07fd",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"strong_points\": [\n    { \"label\": \"React\", \"note\": 85, \"proof\": \"Projet dashboard React en licence\" }\n  ],\n  \"medium_points\": [\n    { \"label\": \"JavaScript avancé\", \"note\": 60, \"proof\": \"Bonne base JS mais usage limité\" }\n  ],\n  \"weak_points\": [\n    { \"label\": \"Docker\", \"note\": 20, \"proof\": \"Aucune utilisation mentionnée\" }\n  ],\n  \"overall_score\": 68,\n  \"advice\": \"Tu as un bon potentiel mais il te manque encore quelques compétences techniques clés pour être vraiment compétitif.\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        752,
+        1072
+      ],
+      "id": "1c3e08de-aaf7-48c3-9652-5bd4c9f754fd",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bd1fe569-0009-4ed3-bb14-6e05a6eazertyu",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        608,
+        1568
+      ],
+      "id": "cdcb0d51-2540-4ef5-a2d9-e68b542df0f7",
+      "name": "Webhook3",
+      "webhookId": "bd1fe569-0009-4ed3-bb14-6e05a6e89d97"
+    },
+    {
+      "parameters": {
+        "promptType": "=define",
+        "text": "=This is the technical skills of the user:\n{{ $json.merged }}\n\nAnd this is the job description:\n{{ $('Webhook3').item.json.body.jobDescription }}\n\nYou are a technical interview assistant specialized in generating W3Schools-style quiz questions.\n\nYour task is to generate clear, concise, and practical technical questions based on:\n\nThe job description requirements\n\nThe candidate’s technical skills\n\nReal-world usage of the technologies\n\nQuestion design rules (VERY IMPORTANT):\n\nQuestions must be short, precise, and unambiguous\n\nEach question must test one clear concept\n\nPrefer code-related, practical, or conceptual traps similar to W3Schools quizzes\n\nAvoid open-ended or theoretical explanations\n\nAsk questions directly to the interviewee (e.g., “What does…”, “Which statement is correct…”)\n\nCover:\n\nCore skills required by the job\n\nTechnologies mentioned in the job description\n\nPractical knowledge from past projects and experience\n\nTypes of questions to generate:\n\nMultiple-choice (only ONE correct answer unless explicitly stated)\n\nSingle-choice\n\nTrue / False\n\nOutput rules (STRICT):\n\nReturn ONLY valid JSON\n\nDo NOT add explanations, comments, or text outside the JSON\n\nRespect the structure exactly\n\ncorrect_answer must match the correct option value\n\nReturn STRICTLY this JSON format:\n{\n  \"questions\": [\n    {\n      \"question_text\": \"string\",\n      \"options\": [\n        { \"option1\": \"string\" },\n        { \"option2\": \"string\" },\n        { \"option3\": \"string\" }\n      ],\n      \"correct_answer\": \"string\"\n    }\n  ]\n}\n\nNotes:\n\nQuestions must be interview-ready\n\nDifficulty should match a professional technical interview, not beginner tutorials\n-Ask exactly 10 questions\nNo text outside the JSON under any circumstances",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        1280,
+        1520
+      ],
+      "id": "800b2fbb-0c77-4142-a560-ef9118a4afec",
+      "name": "AI Agent3"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "azertyiuytregg"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1376,
+        1840
+      ],
+      "id": "5dcca3f6-f72a-4e0a-abbc-15b1a364f930",
+      "name": "Simple Memory3"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1600,
+        1552
+      ],
+      "id": "425ef36a-37ae-40be-9214-538bf78d5ada",
+      "name": "Respond to Webhook3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allItems = $input.all();\nconst data = allItems[0].json.technical;\n\n// Convert to JSON string (minified)\nlet str = JSON.stringify(data);\n\n// Remove ALL spaces, tabs, newlines, backslashes, etc.\nstr = str\n  .replace(/\\s+/g, ' ')      // remove spaces / tabs / newlines\n  .replace(/\\\\+/g, '')      // remove backslashes\n  .replace(/\\n+/g, '')      // remove line breaks\n  .replace(/\\r+/g, '');     // remove carriage returns\n\nreturn [\n  {\n    json: {\n      merged: str\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        1568
+      ],
+      "id": "cf552b52-4166-4190-8a3d-3be07d9774eb",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "body.profile.skills.technical"
+            },
+            {
+              "fieldToAggregate": "body.jobDescription"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        816,
+        1568
+      ],
+      "id": "8d488aa6-40fb-4965-add3-5795b1aae5f6",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1568,
+        1792
+      ],
+      "id": "e50f5153-edfe-44db-af47-61a845f63c9b",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        1808
+      ],
+      "id": "c7fefc28-d1b1-4f92-a143-dc271a0c03a5",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "5ZZcs8nH2hBEOqaz",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "rahim-n8n.app.n8n.cloud",
+            "user-agent": "node",
+            "content-length": "2926",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "accept-language": "*",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "TN",
+            "cf-ray": "9abfe063a734df75-MRS",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "sec-fetch-mode": "cors",
+            "x-forwarded-for": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f, 162.159.122.107",
+            "x-forwarded-host": "rahim-n8n.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-92-7c777649cb-hj749",
+            "x-is-trusted": "yes",
+            "x-real-ip": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "profile": {
+              "personalInfo": {
+                "fullName": "Abderahim Farhat",
+                "phone": "+21624249900",
+                "address": "Immeuble Zohra Monceur Route Touristique 14 Janvier Hammam Sousse",
+                "city": "Hammam Sousse",
+                "country": "Tunisia",
+                "linkedin": "https://www.linkedin.com/in/abderahim-farhat/",
+                "github": "https://github.com/Rahim-farhat",
+                "website": "",
+                "summary": "I am a Computer Science graduate specializing in agentic AI,  workflow automation, and  Retrieval-Augmented Generation (RAG) systems. I build intelligent chatbots, automate complex processes, and develop AI-driven workflows that boost efficiency and innovation. With strong  web development skills and a solid foundation in ma chine learning, I'm passionate about solving real-world problems through cutting-edge technology.  I thrive in dynamic environments and am committed to driving digital transformation through  creative problem-solving and continuous learning."
+              },
+              "skills": {
+                "technical": [
+                  {
+                    "name": "React",
+                    "category": "Frontend",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae8505e"
+                  },
+                  {
+                    "name": "Express",
+                    "category": "Backend",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae8505f"
+                  },
+                  {
+                    "name": "MongoDB",
+                    "category": "Other",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae85060"
+                  }
+                ],
+                "soft": [
+                  {
+                    "name": "Leadership",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae85061"
+                  }
+                ]
+              },
+              "_id": "6939e5f17f6c2db3fae85044",
+              "user": "6939e5ea7f6c2db3fae8503f",
+              "education": [
+                {
+                  "institution": "ISIMM",
+                  "degree": "cycle d'ingenieur",
+                  "field": "Inormatique",
+                  "startDate": "2022-02-01T00:00:00.000Z",
+                  "endDate": null,
+                  "current": true,
+                  "gpa": "4",
+                  "achievements": [],
+                  "_id": "6939e70a7f6c2db3fae85052"
+                },
+                {
+                  "institution": "ESSTHS",
+                  "degree": "Bachelor",
+                  "field": "informatique",
+                  "startDate": "2019-01-01T00:00:00.000Z",
+                  "endDate": "2022-08-01T00:00:00.000Z",
+                  "current": false,
+                  "gpa": "3.5",
+                  "achievements": [],
+                  "_id": "6939e70a7f6c2db3fae85053"
+                }
+              ],
+              "workExperience": [
+                {
+                  "company": "Satoripop",
+                  "position": "Software Engineer",
+                  "location": "sousse, tunisie",
+                  "startDate": "2025-07-01T00:00:00.000Z",
+                  "endDate": "2025-10-01T00:00:00.000Z",
+                  "current": false,
+                  "responsibilities": [
+                    "Développement d'applications web",
+                    "Gestion de projet",
+                    " Code review"
+                  ],
+                  "achievements": [],
+                  "_id": "6939e7477f6c2db3fae85058"
+                }
+              ],
+              "projects": [],
+              "certifications": [],
+              "languages": [],
+              "completeness": 75,
+              "lastUpdated": "2025-12-10T21:35:04.722Z",
+              "createdAt": "2025-12-10T21:28:17.832Z",
+              "updatedAt": "2025-12-10T21:35:04.722Z",
+              "__v": 3
+            },
+            "jobDescription": "We are looking for a Software Developer to join our engineering team and contribute to the design, development, and deployment of scalable digital solutions. Responsibilities include building mobile applications with Kotlin, creating web interfaces with React and JavaScript, integrating REST APIs, participating in code reviews, ensuring high code quality, and collaborating with product and design teams. Required skills include Kotlin, Android XML, JavaScript, React, Node.js, Git, REST APIs, and good teamwork and problem-solving abilities."
+          },
+          "webhookUrl": "https://rahim-n8n.app.n8n.cloud/webhook/bd1fe569-0009-4ed3-bb14-6e05a6e89d97",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "Webhook2": [
+      {
+        "json": {
+          "headers": {
+            "host": "rahim-n8n.app.n8n.cloud",
+            "user-agent": "node",
+            "content-length": "2926",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "accept-language": "*",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "TN",
+            "cf-ray": "9abfe063a734df75-MRS",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "sec-fetch-mode": "cors",
+            "x-forwarded-for": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f, 162.159.122.107",
+            "x-forwarded-host": "rahim-n8n.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-92-7c777649cb-hj749",
+            "x-is-trusted": "yes",
+            "x-real-ip": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "profile": {
+              "personalInfo": {
+                "fullName": "Abderahim Farhat",
+                "phone": "+21624249900",
+                "address": "Immeuble Zohra Monceur Route Touristique 14 Janvier Hammam Sousse",
+                "city": "Hammam Sousse",
+                "country": "Tunisia",
+                "linkedin": "https://www.linkedin.com/in/abderahim-farhat/",
+                "github": "https://github.com/Rahim-farhat",
+                "website": "",
+                "summary": "I am a Computer Science graduate specializing in agentic AI,  workflow automation, and  Retrieval-Augmented Generation (RAG) systems. I build intelligent chatbots, automate complex processes, and develop AI-driven workflows that boost efficiency and innovation. With strong  web development skills and a solid foundation in ma chine learning, I'm passionate about solving real-world problems through cutting-edge technology.  I thrive in dynamic environments and am committed to driving digital transformation through  creative problem-solving and continuous learning."
+              },
+              "skills": {
+                "technical": [
+                  {
+                    "name": "React",
+                    "category": "Frontend",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae8505e"
+                  },
+                  {
+                    "name": "Express",
+                    "category": "Backend",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae8505f"
+                  },
+                  {
+                    "name": "MongoDB",
+                    "category": "Other",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae85060"
+                  }
+                ],
+                "soft": [
+                  {
+                    "name": "Leadership",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae85061"
+                  }
+                ]
+              },
+              "_id": "6939e5f17f6c2db3fae85044",
+              "user": "6939e5ea7f6c2db3fae8503f",
+              "education": [
+                {
+                  "institution": "ISIMM",
+                  "degree": "cycle d'ingenieur",
+                  "field": "Inormatique",
+                  "startDate": "2022-02-01T00:00:00.000Z",
+                  "endDate": null,
+                  "current": true,
+                  "gpa": "4",
+                  "achievements": [],
+                  "_id": "6939e70a7f6c2db3fae85052"
+                },
+                {
+                  "institution": "ESSTHS",
+                  "degree": "Bachelor",
+                  "field": "informatique",
+                  "startDate": "2019-01-01T00:00:00.000Z",
+                  "endDate": "2022-08-01T00:00:00.000Z",
+                  "current": false,
+                  "gpa": "3.5",
+                  "achievements": [],
+                  "_id": "6939e70a7f6c2db3fae85053"
+                }
+              ],
+              "workExperience": [
+                {
+                  "company": "Satoripop",
+                  "position": "Software Engineer",
+                  "location": "sousse, tunisie",
+                  "startDate": "2025-07-01T00:00:00.000Z",
+                  "endDate": "2025-10-01T00:00:00.000Z",
+                  "current": false,
+                  "responsibilities": [
+                    "Développement d'applications web",
+                    "Gestion de projet",
+                    " Code review"
+                  ],
+                  "achievements": [],
+                  "_id": "6939e7477f6c2db3fae85058"
+                }
+              ],
+              "projects": [],
+              "certifications": [],
+              "languages": [],
+              "completeness": 75,
+              "lastUpdated": "2025-12-10T21:35:04.722Z",
+              "createdAt": "2025-12-10T21:28:17.832Z",
+              "updatedAt": "2025-12-10T21:35:04.722Z",
+              "__v": 3
+            },
+            "jobDescription": "We are looking for a Software Developer to join our engineering team and contribute to the design, development, and deployment of scalable digital solutions. Responsibilities include building mobile applications with Kotlin, creating web interfaces with React and JavaScript, integrating REST APIs, participating in code reviews, ensuring high code quality, and collaborating with product and design teams. Required skills include Kotlin, Android XML, JavaScript, React, Node.js, Git, REST APIs, and good teamwork and problem-solving abilities."
+          },
+          "webhookUrl": "https://rahim-n8n.app.n8n.cloud/webhook/bd1fe569-0009-4ed3-bb14-6e05a6e89d97",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Webhook1": [
+      {
+        "json": {
+          "headers": {
+            "host": "rahim-n8n.app.n8n.cloud",
+            "user-agent": "node",
+            "content-length": "2926",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "accept-language": "*",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "TN",
+            "cf-ray": "9abfe063a734df75-MRS",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "sec-fetch-mode": "cors",
+            "x-forwarded-for": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f, 162.159.122.107",
+            "x-forwarded-host": "rahim-n8n.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-92-7c777649cb-hj749",
+            "x-is-trusted": "yes",
+            "x-real-ip": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "profile": {
+              "personalInfo": {
+                "fullName": "Abderahim Farhat",
+                "phone": "+21624249900",
+                "address": "Immeuble Zohra Monceur Route Touristique 14 Janvier Hammam Sousse",
+                "city": "Hammam Sousse",
+                "country": "Tunisia",
+                "linkedin": "https://www.linkedin.com/in/abderahim-farhat/",
+                "github": "https://github.com/Rahim-farhat",
+                "website": "",
+                "summary": "I am a Computer Science graduate specializing in agentic AI,  workflow automation, and  Retrieval-Augmented Generation (RAG) systems. I build intelligent chatbots, automate complex processes, and develop AI-driven workflows that boost efficiency and innovation. With strong  web development skills and a solid foundation in ma chine learning, I'm passionate about solving real-world problems through cutting-edge technology.  I thrive in dynamic environments and am committed to driving digital transformation through  creative problem-solving and continuous learning."
+              },
+              "skills": {
+                "technical": [
+                  {
+                    "name": "React",
+                    "category": "Frontend",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae8505e"
+                  },
+                  {
+                    "name": "Express",
+                    "category": "Backend",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae8505f"
+                  },
+                  {
+                    "name": "MongoDB",
+                    "category": "Other",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae85060"
+                  }
+                ],
+                "soft": [
+                  {
+                    "name": "Leadership",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae85061"
+                  }
+                ]
+              },
+              "_id": "6939e5f17f6c2db3fae85044",
+              "user": "6939e5ea7f6c2db3fae8503f",
+              "education": [
+                {
+                  "institution": "ISIMM",
+                  "degree": "cycle d'ingenieur",
+                  "field": "Inormatique",
+                  "startDate": "2022-02-01T00:00:00.000Z",
+                  "endDate": null,
+                  "current": true,
+                  "gpa": "4",
+                  "achievements": [],
+                  "_id": "6939e70a7f6c2db3fae85052"
+                },
+                {
+                  "institution": "ESSTHS",
+                  "degree": "Bachelor",
+                  "field": "informatique",
+                  "startDate": "2019-01-01T00:00:00.000Z",
+                  "endDate": "2022-08-01T00:00:00.000Z",
+                  "current": false,
+                  "gpa": "3.5",
+                  "achievements": [],
+                  "_id": "6939e70a7f6c2db3fae85053"
+                }
+              ],
+              "workExperience": [
+                {
+                  "company": "Satoripop",
+                  "position": "Software Engineer",
+                  "location": "sousse, tunisie",
+                  "startDate": "2025-07-01T00:00:00.000Z",
+                  "endDate": "2025-10-01T00:00:00.000Z",
+                  "current": false,
+                  "responsibilities": [
+                    "Développement d'applications web",
+                    "Gestion de projet",
+                    " Code review"
+                  ],
+                  "achievements": [],
+                  "_id": "6939e7477f6c2db3fae85058"
+                }
+              ],
+              "projects": [],
+              "certifications": [],
+              "languages": [],
+              "completeness": 75,
+              "lastUpdated": "2025-12-10T21:35:04.722Z",
+              "createdAt": "2025-12-10T21:28:17.832Z",
+              "updatedAt": "2025-12-10T21:35:04.722Z",
+              "__v": 3
+            },
+            "jobDescription": "We are looking for a Software Developer to join our engineering team and contribute to the design, development, and deployment of scalable digital solutions. Responsibilities include building mobile applications with Kotlin, creating web interfaces with React and JavaScript, integrating REST APIs, participating in code reviews, ensuring high code quality, and collaborating with product and design teams. Required skills include Kotlin, Android XML, JavaScript, React, Node.js, Git, REST APIs, and good teamwork and problem-solving abilities."
+          },
+          "webhookUrl": "https://rahim-n8n.app.n8n.cloud/webhook/bd1fe569-0009-4ed3-bb14-6e05a6e89d97",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Webhook3": [
+      {
+        "json": {
+          "headers": {
+            "host": "rahim-n8n.app.n8n.cloud",
+            "user-agent": "node",
+            "content-length": "2926",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "accept-language": "*",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "TN",
+            "cf-ray": "9abfe063a734df75-MRS",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "sec-fetch-mode": "cors",
+            "x-forwarded-for": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f, 162.159.122.107",
+            "x-forwarded-host": "rahim-n8n.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-92-7c777649cb-hj749",
+            "x-is-trusted": "yes",
+            "x-real-ip": "2c0f:f698:c244:2f8b:60d6:1e84:2a35:976f"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "profile": {
+              "personalInfo": {
+                "fullName": "Abderahim Farhat",
+                "phone": "+21624249900",
+                "address": "Immeuble Zohra Monceur Route Touristique 14 Janvier Hammam Sousse",
+                "city": "Hammam Sousse",
+                "country": "Tunisia",
+                "linkedin": "https://www.linkedin.com/in/abderahim-farhat/",
+                "github": "https://github.com/Rahim-farhat",
+                "website": "",
+                "summary": "I am a Computer Science graduate specializing in agentic AI,  workflow automation, and  Retrieval-Augmented Generation (RAG) systems. I build intelligent chatbots, automate complex processes, and develop AI-driven workflows that boost efficiency and innovation. With strong  web development skills and a solid foundation in ma chine learning, I'm passionate about solving real-world problems through cutting-edge technology.  I thrive in dynamic environments and am committed to driving digital transformation through  creative problem-solving and continuous learning."
+              },
+              "skills": {
+                "technical": [
+                  {
+                    "name": "React",
+                    "category": "Frontend",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae8505e"
+                  },
+                  {
+                    "name": "Express",
+                    "category": "Backend",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae8505f"
+                  },
+                  {
+                    "name": "MongoDB",
+                    "category": "Other",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae85060"
+                  }
+                ],
+                "soft": [
+                  {
+                    "name": "Leadership",
+                    "proficiency": "Intermediate",
+                    "_id": "6939e7887f6c2db3fae85061"
+                  }
+                ]
+              },
+              "_id": "6939e5f17f6c2db3fae85044",
+              "user": "6939e5ea7f6c2db3fae8503f",
+              "education": [
+                {
+                  "institution": "ISIMM",
+                  "degree": "cycle d'ingenieur",
+                  "field": "Inormatique",
+                  "startDate": "2022-02-01T00:00:00.000Z",
+                  "endDate": null,
+                  "current": true,
+                  "gpa": "4",
+                  "achievements": [],
+                  "_id": "6939e70a7f6c2db3fae85052"
+                },
+                {
+                  "institution": "ESSTHS",
+                  "degree": "Bachelor",
+                  "field": "informatique",
+                  "startDate": "2019-01-01T00:00:00.000Z",
+                  "endDate": "2022-08-01T00:00:00.000Z",
+                  "current": false,
+                  "gpa": "3.5",
+                  "achievements": [],
+                  "_id": "6939e70a7f6c2db3fae85053"
+                }
+              ],
+              "workExperience": [
+                {
+                  "company": "Satoripop",
+                  "position": "Software Engineer",
+                  "location": "sousse, tunisie",
+                  "startDate": "2025-07-01T00:00:00.000Z",
+                  "endDate": "2025-10-01T00:00:00.000Z",
+                  "current": false,
+                  "responsibilities": [
+                    "Développement d'applications web",
+                    "Gestion de projet",
+                    " Code review"
+                  ],
+                  "achievements": [],
+                  "_id": "6939e7477f6c2db3fae85058"
+                }
+              ],
+              "projects": [],
+              "certifications": [],
+              "languages": [],
+              "completeness": 75,
+              "lastUpdated": "2025-12-10T21:35:04.722Z",
+              "createdAt": "2025-12-10T21:28:17.832Z",
+              "updatedAt": "2025-12-10T21:35:04.722Z",
+              "__v": 3
+            },
+            "jobDescription": "We are looking for a Software Developer to join our engineering team and contribute to the design, development, and deployment of scalable digital solutions. Responsibilities include building mobile applications with Kotlin, creating web interfaces with React and JavaScript, integrating REST APIs, participating in code reviews, ensuring high code quality, and collaborating with product and design teams. Required skills include Kotlin, Android XML, JavaScript, React, Node.js, Git, REST APIs, and good teamwork and problem-solving abilities."
+          },
+          "webhookUrl": "https://rahim-n8n.app.n8n.cloud/webhook/bd1fe569-0009-4ed3-bb14-6e05a6e89d97",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook3": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        []
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "970b6ed9-4d34-4b79-9d62-1cbed0c76ea8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0788280b7b954daec53405eb205c0abbe3ea274e2f37c6c8c71bc19461afa056"
+  },
+  "id": "Ux7IbRdBgFp1DAdp",
+  "tags": []
+}

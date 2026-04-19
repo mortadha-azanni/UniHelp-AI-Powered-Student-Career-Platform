@@ -1,0 +1,346 @@
+/* ═══════════════════════════════════════════════════════════════
+   NodeDetailPanel — right sidebar that shows full node details
+   when a roadmap node is selected on the canvas.
+═══════════════════════════════════════════════════════════════ */
+
+.ndp {
+    width: 300px;
+    flex-shrink: 0;
+    background: #0f1621;
+    border-left: 1px solid rgba(99, 102, 241, 0.18);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ── Scrollable content body ──────────────────────────────── */
+
+.ndp__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.ndp__body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.ndp__body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ndp__body::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 4px;
+}
+
+/* ── Section grouping ─────────────────────────────────────── */
+
+.ndp__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.ndp__section-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: rgba(148, 163, 184, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ── Title block ──────────────────────────────────────────── */
+
+.ndp__title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.ndp__title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #e2e8f0;
+    line-height: 1.3;
+    flex: 1;
+}
+
+.ndp__order-chip {
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: #a5b4fc;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 20px;
+    padding: 0.18rem 0.55rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+/* ── Description ──────────────────────────────────────────── */
+
+.ndp__description {
+    font-size: 0.78rem;
+    color: rgba(148, 163, 184, 0.85);
+    line-height: 1.6;
+}
+
+/* ── Status selector ──────────────────────────────────────── */
+
+.ndp__status-row {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.ndp__status-btn {
+    flex: 1;
+    padding: 0.42rem 0.3rem;
+    border-radius: 8px;
+    border: 1.5px solid transparent;
+    font-size: 0.68rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(148, 163, 184, 0.6);
+}
+
+.ndp__status-btn:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.ndp__status-btn--active-pending {
+    background: rgba(99, 102, 241, 0.18);
+    border-color: rgba(99, 102, 241, 0.5);
+    color: #a5b4fc;
+}
+
+.ndp__status-btn--active-in_progress {
+    background: rgba(245, 158, 11, 0.18);
+    border-color: rgba(245, 158, 11, 0.5);
+    color: #fbbf24;
+}
+
+.ndp__status-btn--active-done {
+    background: rgba(16, 185, 129, 0.18);
+    border-color: rgba(16, 185, 129, 0.5);
+    color: #34d399;
+}
+
+/* ── Tools ────────────────────────────────────────────────── */
+
+.ndp__tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.ndp__tool-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.28rem 0.65rem;
+    border-radius: 7px;
+    background: rgba(99, 102, 241, 0.12);
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.22);
+}
+
+.ndp__tool-type {
+    font-size: 0.57rem;
+    color: rgba(148, 163, 184, 0.5);
+    font-weight: 500;
+    text-transform: lowercase;
+}
+
+/* ── Resources ────────────────────────────────────────────── */
+
+.ndp__resources-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.ndp__resource-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    text-decoration: none;
+    transition: background 0.14s ease, border-color 0.14s ease;
+}
+
+.ndp__resource-card:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.35);
+}
+
+.ndp__resource-title {
+    font-size: 0.77rem;
+    font-weight: 600;
+    color: #818cf8;
+    line-height: 1.3;
+}
+
+.ndp__resource-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.ndp__resource-type {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(148, 163, 184, 0.5);
+}
+
+.ndp__resource-url {
+    font-size: 0.6rem;
+    color: rgba(148, 163, 184, 0.4);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Prerequisites ────────────────────────────────────────── */
+
+.ndp__prereqs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.ndp__prereq-chip {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(148, 163, 184, 0.7);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+}
+
+/* ── Difficulty badge ─────────────────────────────────────── */
+
+.ndp__diff-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.28rem 0.75rem;
+    border-radius: 20px;
+}
+
+.ndp__diff-badge--beginner {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.ndp__diff-badge--intermediate {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.ndp__diff-badge--advanced {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* ── Empty state ──────────────────────────────────────────── */
+
+.ndp__empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.2rem;
+    text-align: center;
+    gap: 0.7rem;
+    color: rgba(148, 163, 184, 0.45);
+}
+
+.ndp__empty-icon {
+    font-size: 2.2rem;
+    opacity: 0.6;
+}
+
+.ndp__empty-text {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.ndp__empty-hint {
+    font-size: 0.7rem;
+    color: rgba(148, 163, 184, 0.3);
+    margin: 0;
+}
+
+/* ── Divider ──────────────────────────────────────────────── */
+
+.ndp__divider {
+    height: 1px;
+    background: rgba(99, 102, 241, 0.1);
+    margin: 0;
+}
+
+/* ── Panel header ─────────────────────────────────────────── */
+
+.ndp__header {
+    padding: 0.85rem 1rem 0.7rem;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ndp__header-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: rgba(148, 163, 184, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0;
+}
+/* ── AI Generate button ───────────────────────────────────── */
+
+.ndp__ai-btn {
+    width: 100%;
+    padding: 0.55rem;
+    border-radius: 9px;
+    border: none;
+    background: rgba(124, 58, 237, 0.82);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+}
+
+.ndp__ai-btn:hover:not(:disabled) {
+    background: rgba(109, 40, 217, 0.95);
+}
+
+.ndp__ai-btn--loading {
+    background: rgba(124, 58, 237, 0.3);
+    color: #c4b5fd;
+    cursor: not-allowed;
+}

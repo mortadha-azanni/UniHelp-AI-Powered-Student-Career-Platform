@@ -1,0 +1,36 @@
+﻿[dotenv@17.2.3] injecting env (10) from .env -- tip: ÔÜÖ´©Å  load multiple .env files with { path: ['.env.local', '.env'] }
+
+======================================
+  GOOGLE API KEY & MODEL DIAGNOSTICS
+======================================
+
+
+[GOOGLE_API_KEY (active)]
+   Key: AQ.Ab8RN6K...ECFA
+   Testing gemini-3.0-flash                         ÔåÆ ÔØî NOT FOUND (model doesn't exist)
+   Testing gemini-3.0-flash-lite                    ÔåÆ ÔØî NOT FOUND (model doesn't exist)
+   Testing gemini-2.5-flash                         ÔåÆ Ô£à WORKS! Response: "OK"
+   Testing gemini-2.5-flash-preview-04-17           ÔåÆ ÔØî NOT FOUND (model doesn't exist)
+   Testing gemini-2.5-pro                           ÔåÆ ÔÜá´©Å  QUOTA EXHAUSTED (RESOURCE_EXHAUSTED)
+   Testing gemini-2.5-pro-preview-03-25             ÔåÆ ÔØî NOT FOUND (model doesn't exist)
+   Testing gemini-2.0-flash                         ÔåÆ ÔÜá´©Å  QUOTA EXHAUSTED (RESOURCE_EXHAUSTED)
+   Testing gemini-2.0-flash-lite                    ÔåÆ ÔÜá´©Å  QUOTA EXHAUSTED (RESOURCE_EXHAUSTED)
+
+[Backup Google key (commented)]
+   Key: AIzaSyDoCd...DWyk
+   Testing gemini-3.0-flash                         ÔåÆ ÔØî NOT FOUND (model doesn't exist)
+   Testing gemini-3.0-flash-lite                    ÔåÆ ÔØî NOT FOUND (model doesn't exist)
+   Testing gemini-2.5-flash                         ÔåÆ ÔÜá´©Å  QUOTA EXHAUSTED (RESOURCE_EXHAUSTED)
+   Testing gemini-2.5-flash-preview-04-17           ÔåÆ ÔØî NOT FOUND (model doesn't exist)
+   Testing gemini-2.5-pro                           ÔåÆ ÔÜá´©Å  QUOTA EXHAUSTED (RESOURCE_EXHAUSTED)
+   Testing gemini-2.5-pro-preview-03-25             ÔåÆ ÔØî NOT FOUND (model doesn't exist)
+   Testing gemini-2.0-flash                         ÔåÆ ÔÜá´©Å  QUOTA EXHAUSTED (RESOURCE_EXHAUSTED)
+   Testing gemini-2.0-flash-lite                    ÔåÆ ÔÜá´©Å  QUOTA EXHAUSTED (RESOURCE_EXHAUSTED)
+
+
+[OPENROUTER_API_KEY]
+   Key: sk-or-v1-30479...1478
+   Testing openai/gpt-4o-mini via OpenRouter         ÔåÆ Ô£à WORKS! Response: "OK!"
+
+======================================
+

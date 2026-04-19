@@ -1,0 +1,39 @@
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: client
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    ports:
+      - "${CLIENT_PORT:-5173}:5173"
+    env_file:
+      - ./client/.env
+    
+    volumes:
+      - client_node_modules:/client/node_modules
+    command: ["npm", "run", "dev"]
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    ports:
+      - "${SERVER_PORT:-5000}:5000"
+    env_file:
+      - ./server/.env
+    volumes:
+      - server_node_modules:/server/node_modules
+    command: ["npm", "run", "dev"]
+
+volumes:
+  client_node_modules:
+    driver: local
+  server_node_modules:
+    driver: local

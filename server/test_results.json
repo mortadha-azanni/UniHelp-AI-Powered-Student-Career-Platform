@@ -1,0 +1,114 @@
+{
+  "keys": [
+    {
+      "name": "GOOGLE_API_KEY (active)",
+      "key": "AQ.Ab8RN6K...ECFA",
+      "models": {
+        "gemini-3.0-flash": {
+          "status": "NOT_FOUND",
+          "code": 404,
+          "error": "NOT_FOUND",
+          "message": "models/gemini-3.0-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "gemini-3.0-flash-lite": {
+          "status": "NOT_FOUND",
+          "code": 404,
+          "error": "NOT_FOUND",
+          "message": "models/gemini-3.0-flash-lite is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "gemini-2.5-pro": {
+          "status": "QUOTA_EXCEEDED",
+          "code": 429,
+          "error": "RESOURCE_EXHAUSTED",
+          "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "gemini-2.5-flash": {
+          "status": "WORKS",
+          "response": "OK"
+        },
+        "gemini-2.5-flash-preview-04-17": {
+          "status": "NOT_FOUND",
+          "code": 404,
+          "error": "NOT_FOUND",
+          "message": "models/gemini-2.5-flash-preview-04-17 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "gemini-2.5-pro-preview-03-25": {
+          "status": "NOT_FOUND",
+          "code": 404,
+          "error": "NOT_FOUND",
+          "message": "models/gemini-2.5-pro-preview-03-25 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "gemini-2.0-flash": {
+          "status": "QUOTA_EXCEEDED",
+          "code": 429,
+          "error": "RESOURCE_EXHAUSTED",
+          "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "gemini-2.0-flash-lite": {
+          "status": "QUOTA_EXCEEDED",
+          "code": 429,
+          "error": "RESOURCE_EXHAUSTED",
+          "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        }
+      }
+    },
+    {
+      "name": "Backup Google key",
+      "key": "AIzaSyDoCd...DWyk",
+      "models": {
+        "gemini-3.0-flash": {
+          "status": "NOT_FOUND",
+          "code": 404,
+          "error": "NOT_FOUND",
+          "message": "models/gemini-3.0-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "gemini-3.0-flash-lite": {
+          "status": "NOT_FOUND",
+          "code": 404,
+          "error": "NOT_FOUND",
+          "message": "models/gemini-3.0-flash-lite is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "gemini-2.5-pro": {
+          "status": "QUOTA_EXCEEDED",
+          "code": 429,
+          "error": "RESOURCE_EXHAUSTED",
+          "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "gemini-2.5-flash": {
+          "status": "QUOTA_EXCEEDED",
+          "code": 429,
+          "error": "RESOURCE_EXHAUSTED",
+          "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "gemini-2.5-flash-preview-04-17": {
+          "status": "NOT_FOUND",
+          "code": 404,
+          "error": "NOT_FOUND",
+          "message": "models/gemini-2.5-flash-preview-04-17 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "gemini-2.5-pro-preview-03-25": {
+          "status": "NOT_FOUND",
+          "code": 404,
+          "error": "NOT_FOUND",
+          "message": "models/gemini-2.5-pro-preview-03-25 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "gemini-2.0-flash": {
+          "status": "QUOTA_EXCEEDED",
+          "code": 429,
+          "error": "RESOURCE_EXHAUSTED",
+          "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "gemini-2.0-flash-lite": {
+          "status": "QUOTA_EXCEEDED",
+          "code": 429,
+          "error": "RESOURCE_EXHAUSTED",
+          "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        }
+      }
+    }
+  ],
+  "openrouter": {
+    "status": "WORKS",
+    "response": "OK!"
+  }
+}
