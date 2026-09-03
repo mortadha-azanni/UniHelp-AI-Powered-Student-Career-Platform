@@ -237,12 +237,6 @@ projet_nuit_ai/
 
 ---
 
-## 🤝 Team
-
-Project developed by students of **ING1** as an academic AI project.
-
----
-
 ## 📝 License
 
 Educational use only.
